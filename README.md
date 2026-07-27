@@ -20,5 +20,30 @@ This project explores how AI-powered smart contracts can automate trust and deci
 ## Status
 
 🚧 Work in Progress
+## Project Structure
+
+```
+genlayer-ai-escrow/
+│
+├── README.md
+├── LICENSE
+├── contracts/
+│   └── Escrow.sol
+│
+└── docs/
+    ├── architecture.md
+    ├── deployment.md
+    └── roadmap.md
+```
+
+## Future Vision
+
+This project aims to demonstrate how GenLayer Intelligent Contracts can combine blockchain security with AI-assisted reasoning to improve trust, automate dispute resolution, and support more advanced decentralized applications.
+
+## Author
+
+**Web3coiner**
+
+Building AI-powered decentralized applications on GenLayer.
 
 Built by @Web3coiner.
