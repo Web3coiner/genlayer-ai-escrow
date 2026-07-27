@@ -4,28 +4,40 @@
 
 - Solidity ^0.8.20
 - MetaMask
-- GenLayer Testnet
-- GenLayer Developer Environment
+- Remix IDE or Hardhat
+- GenLayer-compatible network
 
-## Steps
+## Deploying with Remix
 
-1. Clone the repository.
-2. Compile the smart contract.
-3. Connect your wallet to the GenLayer Testnet.
-4. Deploy the Escrow contract.
-5. Verify the deployed contract.
-6. Test deposit, release, and refund functions.
+1. Open Remix IDE.
+2. Create `Escrow.sol`.
+3. Paste the contract code.
+4. Compile using Solidity 0.8.20.
+5. Connect MetaMask.
+6. Deploy the contract.
+7. Pass the seller's wallet address to the constructor.
 
-## Contract Functions
+## Workflow
 
-- deposit() — Buyer deposits funds into escrow.
-- releaseFunds() — Buyer releases funds to the seller.
-- refundBuyer() — Seller refunds the buyer.
+Buyer
+→ Deposit ETH
 
-## Future Improvements
+Seller
+→ Wait for confirmation
 
-- AI-assisted dispute resolution
-- Multi-party escrow
-- Milestone-based payments
-- NFT escrow support
-- On-chain evidence verification
+Buyer
+→ Release funds
+
+OR
+
+Buyer
+→ Open dispute
+
+Buyer & Seller
+→ Submit evidence
+
+AI
+→ Records decision
+
+Contract
+→ Releases funds or refunds buyer
