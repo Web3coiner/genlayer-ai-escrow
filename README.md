@@ -50,3 +50,11 @@ This project aims to demonstrate how GenLayer Intelligent Contracts can combine 
 Building AI-powered decentralized applications on GenLayer.
 
 Built by @Web3coiner.
+## Security
+
+- Buyer-only deposits
+- Seller-only refunds
+- Buyer-only fund release
+- Event logging for all major actions
+- AI-assisted dispute resolution
+- Immutable transaction history on-chain
