@@ -88,4 +88,27 @@ contract Escrow {
 
         emit AIDecisionRecorded(decision);
     }
+function recordAIDecision(string memory decision) external {
+    require(disputeOpened, "No dispute");
+
+    aiDecision = decision;
+
+    emit AIDecisionRecorded(decision);
+
+    if (
+        keccak256(bytes(decision)) ==
+        keccak256(bytes("release"))
+    ) {
+        status = Status.Released;
+        payable(seller).transfer(address(this).balance);
+    }
+
+    if (
+        keccak256(bytes(decision)) ==
+        keccak256(bytes("refund"))
+    ) {
+        status = Status.Refunded;
+        payable(buyer).transfer(address(this).balance);
+    }
+}
 }
