@@ -1,3 +1,6 @@
+![Solidity](https://img.shields.io/badge/Solidity-0.8.20-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Status](https://img.shields.io/badge/Status-Work%20In%20Progress-orange)
 # GenLayer AI Escrow
 
 ## Overview
