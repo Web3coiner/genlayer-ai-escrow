@@ -2,7 +2,13 @@
 pragma solidity ^0.8.20;
 
 contract Escrow {
-
+    event Deposited(address indexed buyer, uint256 amount);
+    event FundsReleased(address indexed seller, uint256 amount);
+    event BuyerRefunded(address indexed buyer, uint256 amount);
+    event DisputeOpened(address indexed buyer);
+    event BuyerEvidenceSubmitted(string evidence);
+    event SellerEvidenceSubmitted(string evidence);
+    event AIDecisionRecorded(string decision);
     address public buyer;
     address public seller;
 
@@ -14,7 +20,12 @@ contract Escrow {
     }
 
     Status public status;
+    string public buyerEvidence;
+    string public sellerEvidence;
 
+    bool public disputeOpened;
+
+    string public aiDecision;
     constructor(address _seller) {
         buyer = msg.sender;
         seller = _seller;
@@ -27,6 +38,7 @@ contract Escrow {
         require(msg.value > 0, "No ETH sent");
 
         status = Status.Funded;
+        emit Deposited(msg.sender, msg.value);
     }
 
     function releaseFunds() external {
@@ -34,7 +46,7 @@ contract Escrow {
         require(status == Status.Funded, "Not funded");
 
         status = Status.Released;
-
+        emit FundsReleased(seller, address(this).balance);
         payable(seller).transfer(address(this).balance);
     }
 
@@ -45,5 +57,35 @@ contract Escrow {
         status = Status.Refunded;
 
         payable(buyer).transfer(address(this).balance);
+    }
+    function openDispute() external {
+        require(msg.sender == buyer, "Only buyer");
+        require(status == Status.Funded, "Contract not funded");
+
+        disputeOpened = true;
+
+        emit DisputeOpened(msg.sender);
+    }
+
+    function submitBuyerEvidence(string memory evidence) external {
+        require(msg.sender == buyer, "Only buyer");
+
+        buyerEvidence = evidence;
+
+        emit BuyerEvidenceSubmitted(evidence);
+    }
+
+    function submitSellerEvidence(string memory evidence) external {
+        require(msg.sender == seller, "Only seller");
+
+        sellerEvidence = evidence;
+
+        emit SellerEvidenceSubmitted(evidence);
+    }
+
+    function recordAIDecision(string memory decision) external {
+        aiDecision = decision;
+
+        emit AIDecisionRecorded(decision);
     }
 }
