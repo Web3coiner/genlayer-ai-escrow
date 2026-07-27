@@ -55,7 +55,7 @@ contract Escrow {
         require(status == Status.Funded, "Not funded");
 
         status = Status.Refunded;
-
+        emit BuyerRefunded(buyer, address(this).balance);
         payable(buyer).transfer(address(this).balance);
     }
     function openDispute() external {
